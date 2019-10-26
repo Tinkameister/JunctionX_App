@@ -48,9 +48,8 @@ public class ReservActivity extends AppCompatActivity {
     long startTime;
     long finishTime;
 
-    Button dateButton, fromTime, toTime;
+    Button dateButton, fromTime, toTime, sumbit;
     TextView fromText, toText, textDate;
-
 
 
     int Year, Month, Date, beforeHrs, afterHrs,  beforeMin, afterMin;
@@ -64,6 +63,7 @@ public class ReservActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Calendar beforeDate = Calendar.getInstance();
                 Calendar afterDate = Calendar.getInstance();
 
@@ -73,9 +73,13 @@ public class ReservActivity extends AppCompatActivity {
                 startTime = beforeDate.getTimeInMillis()/1000;
                 finishTime = afterDate.getTimeInMillis()/1000;
 
+                dataFill();
+
+                String response;
 
                 client = new MqttNetwork(ReservActivity.this, clientId);
-                client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
+                response = client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
+                Toast.makeText(ReservActivity.this, response, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -125,7 +129,7 @@ public class ReservActivity extends AppCompatActivity {
         if(video_switch.isChecked())
             video = 1;
         else
-            video = 1;
+            video = 0;
 
         if(whiteboard_switch.isChecked())
             whiteboard = 1;
