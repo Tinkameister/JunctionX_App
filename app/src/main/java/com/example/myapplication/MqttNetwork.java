@@ -29,7 +29,7 @@ public class MqttNetwork {
     public void RequestType0(String requestType){
         String payload =
                     "{" +
-                        "\"RequestType\":"+"," +
+                        "\"RequestType\":"+ requestType + "," +
                         "\"Params\":{" +
                         "\"Seats\":10," +
                         "\"Projector\":0," +
