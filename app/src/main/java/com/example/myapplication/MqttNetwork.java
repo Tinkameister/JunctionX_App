@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.text.PrecomputedText;
@@ -28,7 +29,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import android.os.AsyncTask;
 
-public class MqttNetwork {
+public class MqttNetwork extends Application {
     MqttAndroidClient client;
     IMqttToken connectToken;
     IMqttToken subscribeToken;
@@ -40,22 +41,22 @@ public class MqttNetwork {
     String response;
     boolean newResponse = false;
 
-    public MqttNetwork(final Context context, String clientId) {
-        myContext = context;
+    public MqttNetwork(String clientId) {
+        myContext = getApplicationContext();
         //Connect to MQTT broker
         clientID = clientId;
-        client = new MqttAndroidClient(context, "tcp://100.98.11.17:1883", clientId);
+        client = new MqttAndroidClient(getApplicationContext(), "tcp://100.98.11.17:1883", clientId);
         try {
             connectToken = client.connect();
             connectToken.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(myContext, "Connected", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(myContext, exception.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (MqttException e) {
@@ -74,19 +75,19 @@ public class MqttNetwork {
         subscribeToken.setActionCallback(new IMqttActionListener() {
             @Override
             public void onSuccess(IMqttToken asyncActionToken) {
-                Toast.makeText(context, "Subscribed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(myContext, "Subscribed", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                Toast.makeText(context, "Subscribe failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(myContext, "Subscribe failed", Toast.LENGTH_SHORT).show();
             }
         });
 
         client.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable cause) {
-                Toast.makeText(context, "Connection lost", Toast.LENGTH_SHORT).show();
+                Toast.makeText(myContext, "Connection lost", Toast.LENGTH_SHORT).show();
             }
 
             @Override

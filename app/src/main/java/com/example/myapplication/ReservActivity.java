@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,7 @@ public class ReservActivity extends AppCompatActivity {
     String fromTime_txt;
     String toTime_txt;
     String sector;
+    String seat_str;
     int seats;
     int projector;
     int secret;
@@ -48,7 +50,7 @@ public class ReservActivity extends AppCompatActivity {
     long startTime;
     long finishTime;
 
-    Button dateButton, fromTime, toTime, submbit;
+    Button dateButton, fromTime, toTime;
     TextView fromText, toText, textDate;
 
 
@@ -92,6 +94,7 @@ public class ReservActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(ReservActivity.this, "click megvót", Toast.LENGTH_SHORT).show();
                 Calendar beforeDate = Calendar.getInstance();
                 Calendar afterDate = Calendar.getInstance();
 
@@ -101,13 +104,18 @@ public class ReservActivity extends AppCompatActivity {
                 startTime = beforeDate.getTimeInMillis() / 1000;
                 finishTime = afterDate.getTimeInMillis() / 1000;
 
-                client = new MqttNetwork(ReservActivity.this, clientId);
-                dataFill();
+                clientId = "kaki";
+                client = new MqttNetwork(clientId);
+                Toast.makeText(ReservActivity.this, "csatlakozás", Toast.LENGTH_SHORT).show();
+
+                //dataFill();
             }
         });
     }
 
     public void dataFill() {
+
+        Toast.makeText(this, "dataFillbe léptünk", Toast.LENGTH_SHORT).show();
 
         EditText nameVar;
         EditText seats_txt;
@@ -159,8 +167,9 @@ public class ReservActivity extends AppCompatActivity {
             smartboard = 0;
 
         String response;
-        response = client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
-        Toast.makeText(ReservActivity.this, response, Toast.LENGTH_SHORT).show();
+        //response = client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
+        Toast.makeText(ReservActivity.this, "data fill megtörtént", Toast.LENGTH_SHORT).show();
+
     }
 
 
