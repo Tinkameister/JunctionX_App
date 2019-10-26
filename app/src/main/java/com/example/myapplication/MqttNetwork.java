@@ -165,9 +165,44 @@ public class MqttNetwork {
 
         Publish(payload);
 
-        String result = new AsyncResponseWaiter().doInBackground();
+        return new AsyncResponseWaiter().doInBackground();
+    }
 
-        return result;
+    public String MqttQueryReserveTimes(int roomID, int startTime, int endTime){
+
+        String payload = "{\"RequestType\":1," +
+                "\"RoomID\":" + roomID + "," +
+                "\"Times\":{" +
+                "\"Start\":" + startTime + "," +
+                "\"End\":" + endTime + "}}";
+
+        Publish(payload);
+
+        return new AsyncResponseWaiter().doInBackground();
+    }
+
+    public String MqttReserveRoom(int roomID, int startTime, int endTime){
+
+        String payload = "{\"RequestType\":2," +
+                "\"RoomID\":" + roomID + "," +
+                "\"Times\":{" +
+                "\"Start\":" + startTime + "," +
+                "\"End\":" + endTime + "}}";
+
+        Publish(payload);
+
+        return new AsyncResponseWaiter().doInBackground();
+    }
+
+    public String MqttAddParticipant(int reserveID, String participant){
+
+        String payload = "{\"RequestType\":3," +
+                "\"ReserveID\":" + reserveID + "," +
+                "\"Participant\":\"" + participant + "\"}";
+
+        Publish(payload);
+
+        return new AsyncResponseWaiter().doInBackground();
     }
 }
 
