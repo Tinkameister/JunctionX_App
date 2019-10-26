@@ -1,5 +1,6 @@
 package com.example.myapplication;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     String clientId;
     MqttAndroidClient client;
+    String resPayload = "";
+    int roomNumArray[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(IMqttToken asyncActionToken) {
                     Toast.makeText(MainActivity.this, "Connected", Toast.LENGTH_SHORT).show();
                     subscribe();
-                    publish();
                     callBack();
                 }
 
@@ -53,16 +57,30 @@ public class MainActivity extends AppCompatActivity {
 
     void publish() {
         MqttMessage message = new MqttMessage();
-        message.setPayload("bá".getBytes());
+        resPayload =
+                "{" +
+                "\"RequestType\":0," +
+                "\"Params\":{" +
+                    "\"Seats\":10," +
+                    "\"Projector\":0," +
+                "\"Secret\":1," +
+                "\"Video\":0," +
+                "\"Whiteboard\":0," +
+                "\"Smartboard\":0," +
+                "\"Sector\":\"A\"}," +
+                "\"Times\":{" +
+                "\"Begin\":123456789," +
+                "\"End\":123456789}}";
+        message.setPayload(resPayload.getBytes());
         try {
-            client.publish("kula", message);
+            client.publish("users/testuser1/request", message);
         } catch (MqttException e) {
             e.printStackTrace();
         }
     }
 
     void subscribe() {
-        String topic = "qwertz";
+        String topic = "users/testuser1/response";
         int qos = 0;
         IMqttToken subToken = null;
         try {
@@ -92,7 +110,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 String received = new String(message.getPayload());
-                Toast.makeText(MainActivity.this, received, Toast.LENGTH_SHORT).show();
+                String stringNumber = received.replace("[", "");
+                stringNumber = stringNumber.replace("]", "");
+
+                String[] parts = stringNumber.split(",");
+                int[] roomArray = new int[parts.length];
+                for(int i = 0; i < parts.length; i++) {
+                    roomArray[i] = Integer.parseInt(parts[i]);
+                }
+
+                Toast.makeText(MainActivity.this, stringNumber, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -102,5 +129,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClick(View view) {
+        publish();
+        Toast.makeText(this, "Published", Toast.LENGTH_SHORT).show();
     }
 }
