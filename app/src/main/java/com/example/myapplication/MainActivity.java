@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 "\"Smartboard\":0," +
                 "\"Sector\":\"A\"}," +
                 "\"Times\":{" +
-                "\"Begin\":123456789," +
+                "\"Start\":123456789," +
                 "\"End\":123456789}}";
         message.setPayload(resPayload.getBytes());
         try {
