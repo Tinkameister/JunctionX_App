@@ -262,6 +262,7 @@
             android:background="@color/colorOriginalPink"
             android:textColor="@color/colorWhite"
             android:textSize="25sp"
+            android:onClick="onClick"
             android:text="Submit" />
     </LinearLayout>
 

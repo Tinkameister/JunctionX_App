@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
+import android.content.Context;
 import android.view.View;
 import android.os.Bundle;
 import android.view.View;
@@ -28,14 +29,29 @@ public class MqttNetwork {
     IMqttToken subscribeToken;
 
 
-    public MqttNetwork(MqttAndroidClient client){
-        this.client = new MqttAndroidClient(this, );
+    public MqttNetwork(final Context context, String clientId) {
+        client = new MqttAndroidClient(context, "tcp://100.98.11.17:1883", clientId);
         try {
-            this.connectToken = client.connect();
+            connectToken = client.connect();
+            connectToken.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (MqttException e) {
             e.printStackTrace();
         }
+
+
         this.subscribeToken = null;
+
+
 
 
     }
