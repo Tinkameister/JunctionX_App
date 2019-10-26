@@ -5,19 +5,16 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
-=======
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
->>>>>>> menu_gui
 import android.widget.Toast;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -29,6 +26,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,15 +35,25 @@ public class ReservActivity extends AppCompatActivity {
     MqttNetwork client;
     Button submit;
     String clientId;
-<<<<<<< HEAD
+    String name;
+    String fromTime_txt;
+    String toTime_txt;
+    String sector;
+    int seats;
+    int projector;
+    int secret;
+    int video;
+    int whiteboard;
+    int smartboard;
+    long startTime;
+    long finishTime;
 
-=======
-    MqttAndroidClient client;
-    String resPayload = "";
-    int roomNumArray[];
     Button dateButton, fromTime, toTime;
     TextView fromText, toText, textDate;
->>>>>>> menu_gui
+
+
+
+    int Year, Month, Date, beforeHrs, afterHrs,  beforeMin, afterMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +64,23 @@ public class ReservActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar beforeDate = Calendar.getInstance();
+                Calendar afterDate = Calendar.getInstance();
+
+                beforeDate.set(Year, Month, Date, beforeHrs, beforeMin);
+                afterDate.set(Year, Month, Date, afterHrs, afterMin);
+
+                startTime = beforeDate.getTimeInMillis()/1000;
+                finishTime = afterDate.getTimeInMillis()/1000;
+
+
                 client = new MqttNetwork(ReservActivity.this, clientId);
+                client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
             }
         });
     }
 
     public void dataFill() {
-        String name;
-        int seats;
-        int projector;
-        int secret;
-        int video;
-        int whiteboard;
-        int smartboard;
-        char sector;
 
         EditText nameVar;
         EditText seats_txt;
@@ -80,6 +91,12 @@ public class ReservActivity extends AppCompatActivity {
         Switch whiteboard_switch;
         Switch smartboard_switch;
 
+        dateButton = findViewById(R.id.dateButton);
+        fromTime = findViewById(R.id.fromTime);
+        toTime = findViewById(R.id.toTime);
+        textDate = findViewById(R.id.textDate);
+        toText = findViewById(R.id.toText);
+        fromText = findViewById(R.id.fromText);
         nameVar = findViewById(R.id.nameVariable);
         seats_txt = findViewById(R.id.seats);
         projector_switch = findViewById(R.id.Projector);
@@ -87,9 +104,14 @@ public class ReservActivity extends AppCompatActivity {
         video_switch = findViewById(R.id.videoCall);
         whiteboard_switch = findViewById(R.id.whiteboard);
         smartboard_switch = findViewById(R.id.smartBoard);
+        sector_txt = findViewById(R.id.sectionVariable);
 
         name = nameVar.getText().toString();
         seats = Integer.parseInt(seats_txt.getText().toString());
+        fromTime_txt = fromText.getText().toString();
+        toTime_txt = toText.getText().toString();
+        sector = sector_txt.getText().toString();
+
         if(projector_switch.isChecked())
             projector = 1;
         else
@@ -116,21 +138,6 @@ public class ReservActivity extends AppCompatActivity {
         else
             smartboard = 0;
 
-
-<<<<<<< HEAD
-        client.MqttFindRoom()(seats, projector, secret, video, whiteboard, smartboard, sector);
-=======
-            }
-        });
-
-        // ------------------------ DATE selector --------------------------------------
-
-        dateButton= findViewById(R.id.dateButton);
-        fromTime= findViewById(R.id.fromTime);
-        toTime= findViewById(R.id.toTime);
-        textDate= findViewById(R.id.textDate);
-        toText= findViewById(R.id.toText);
-        fromText= findViewById(R.id.fromText);
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +176,10 @@ public class ReservActivity extends AppCompatActivity {
                 String dateString=year+"."+month+"."+date;
                 textDate.setText(dateString);
 
+                Year = year;
+                Month = month;
+                Date = date;
+
                 Calendar calendar1=Calendar.getInstance();
                 calendar1.set(Calendar.YEAR, year);
                 calendar1.set(Calendar.MONTH, month);
@@ -195,6 +206,10 @@ public class ReservActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+
+            beforeHrs = hour;
+            beforeMin = minute;
+
             String timeString=hour+":"+minute;
             fromText.setText(timeString);
             }
@@ -214,6 +229,10 @@ public class ReservActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+
+                afterHrs = hour;
+                afterMin = minute;
+
                 String timeString=hour+":"+minute;
                 toText.setText(timeString);
             }
@@ -221,12 +240,6 @@ public class ReservActivity extends AppCompatActivity {
 
         timePickerDialog.show();
 
->>>>>>> menu_gui
     }
-
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> menu_gui
