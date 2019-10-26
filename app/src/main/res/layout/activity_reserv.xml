@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:customAttribute="http://schemas.android.com/apk/res-auto"
     android:layout_marginRight="20dp"
     android:layout_marginLeft="20dp"
     tools:context=".ReservActivity"
@@ -55,12 +56,31 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="DD/MM/YYYY"
+            android:gravity="center"
+            android:inputType="date"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="00:00"
+            android:inputType="time"
+            android:focusable="false"/>
+
+        <!--<EditText
             android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="30dp"
@@ -71,6 +91,8 @@
             android:ems="10"
             android:layout_marginRight="10dp"
             android:inputType="date" />
+
+
 
         <EditText
             android:id="@+id/fromTime"
@@ -102,7 +124,7 @@
             android:gravity="center"
             android:background="@color/colorLightPink"
             android:ems="10"
-            android:inputType="time" />
+            android:inputType="time" />-->
     </LinearLayout>
 
     <LinearLayout
