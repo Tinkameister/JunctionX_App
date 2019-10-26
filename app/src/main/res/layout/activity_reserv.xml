@@ -73,58 +73,32 @@
             android:focusable="false"/>
 
         <EditText
-            android:id="@+id/time"
+            android:id="@+id/timeFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="00:00"
             android:inputType="time"
             android:focusable="false"/>
 
-        <!--<EditText
-            android:id="@+id/date"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="6"
-            android:background="@color/colorLightPink"
-            android:hint="YYYY.MM.DD."
-            android:gravity="center"
-            android:ems="10"
-            android:layout_marginRight="10dp"
-            android:inputType="date" />
-
-
-
-        <EditText
-            android:id="@+id/fromTime"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="4"
-            android:hint="HH:MM"
-            android:gravity="center"
-            android:background="@color/colorLightPink"
-            android:ems="10"
-            android:inputType="time" />
-
         <TextView
-            android:id="@+id/dash"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:text="-"
             android:textColor="@color/colorBlack"
             android:textSize="25sp"
-            android:text="-" />
+            android:gravity="center"
+            />
 
         <EditText
-            android:id="@+id/toTime"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="4"
-            android:hint="HH:MM"
-            android:gravity="center"
-            android:background="@color/colorLightPink"
-            android:ems="10"
-            android:inputType="time" />-->
+            android:id="@+id/timeTO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="00:00"
+            android:inputType="time"
+            android:focusable="false"/>
+
     </LinearLayout>
 
     <LinearLayout
