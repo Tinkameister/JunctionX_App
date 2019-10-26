@@ -100,10 +100,7 @@ public class ReservActivity extends AppCompatActivity {
             smartboard = 0;
 
 
-
-
-
-
+        client.MqttFindRoom()(seats, projector, secret, video, whiteboard, smartboard, sector);
     }
 
 }
