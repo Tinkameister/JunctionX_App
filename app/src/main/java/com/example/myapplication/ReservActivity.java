@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.app.Activity;
+import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -94,7 +96,6 @@ public class ReservActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ReservActivity.this, "click megvót", Toast.LENGTH_SHORT).show();
                 Calendar beforeDate = Calendar.getInstance();
                 Calendar afterDate = Calendar.getInstance();
 
@@ -104,19 +105,14 @@ public class ReservActivity extends AppCompatActivity {
                 startTime = beforeDate.getTimeInMillis() / 1000;
                 finishTime = afterDate.getTimeInMillis() / 1000;
 
-                clientId = "kaki";
-                client = new MqttNetwork(clientId);
-                Toast.makeText(ReservActivity.this, "csatlakozás", Toast.LENGTH_SHORT).show();
+                client = new MqttNetwork(ReservActivity.this, clientId);
 
-                //dataFill();
+                dataFill();
             }
         });
     }
 
     public void dataFill() {
-
-        Toast.makeText(this, "dataFillbe léptünk", Toast.LENGTH_SHORT).show();
-
         EditText nameVar;
         EditText seats_txt;
         EditText sector_txt;
@@ -167,8 +163,7 @@ public class ReservActivity extends AppCompatActivity {
             smartboard = 0;
 
         String response;
-        //response = client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
-        Toast.makeText(ReservActivity.this, "data fill megtörtént", Toast.LENGTH_SHORT).show();
+        response = client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
 
     }
 
@@ -196,9 +191,9 @@ public class ReservActivity extends AppCompatActivity {
                 calendar1.set(Calendar.MONTH, month);
                 calendar1.set(Calendar.DATE, date);
 
-                CharSequence dateCharSecuence = DateFormat.format("EEEE, dd MMM yyyy", calendar1);
+                CharSequence dateCharSequence = DateFormat.format("EEEE, dd MMM yyyy", calendar1);
 
-                textDate.setText(dateCharSecuence);
+                textDate.setText(dateCharSequence);
 
             }
         }, YEAR, MONTH, DAY);
