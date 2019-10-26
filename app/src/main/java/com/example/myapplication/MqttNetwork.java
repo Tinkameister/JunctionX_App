@@ -19,6 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.internal.wire.MqttSubscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
@@ -27,6 +28,8 @@ public class MqttNetwork {
     MqttAndroidClient client;
     IMqttToken connectToken;
     IMqttToken subscribeToken;
+    IMqttToken disconnectToken;
+
 
 
     public MqttNetwork(final Context context, String clientId) {
@@ -47,16 +50,26 @@ public class MqttNetwork {
         } catch (MqttException e) {
             e.printStackTrace();
         }
-
-
-        this.subscribeToken = null;
-
-
-
-
     }
 
+    public void MqttDisconnect(context){
+        try {
+            disconnectToken = client.disconnect();
+            disconnectToken.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show();
+                }
 
-
-
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    Toast.makeText(context, "Disconnect failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        catch(MqttException e){
+            e.printStackTrace();
+        }
+    }
 }
+
