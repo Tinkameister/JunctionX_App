@@ -116,5 +116,9 @@ public class MqttNetwork {
             e.printStackTrace();
         }
     }
+
+    public int MqttFindRoom(int seats, boolean projector, boolean secret, boolean video, boolean whiteboard, boolean whiteboard, boolean smartboard, char sector){
+
+    }
 }
 
