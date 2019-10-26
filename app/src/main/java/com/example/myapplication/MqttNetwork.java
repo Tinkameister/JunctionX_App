@@ -27,9 +27,16 @@ public class MqttNetwork {
     MqttAndroidClient client;
     IMqttToken connectToken;
     IMqttToken subscribeToken;
+    String clientID;
+    Context myContext;
+
+    String response;
 
 
     public MqttNetwork(final Context context, String clientId) {
+        myContext = context;
+        //Connect to MQTT broker
+        clientID = clientId;
         client = new MqttAndroidClient(context, "tcp://100.98.11.17:1883", clientId);
         try {
             connectToken = client.connect();
@@ -48,11 +55,43 @@ public class MqttNetwork {
             e.printStackTrace();
         }
 
+        //Subscribe to response subtopic
+        String topic = "users/" + clientID + "/response";
 
-        this.subscribeToken = null;
+        try{
+            subscribeToken = client.subscribe(topic, 0);
+        } catch (MqttException ex){
+            ex.printStackTrace();
+        }
 
+        subscribeToken.setActionCallback(new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken asyncActionToken) {
+                Toast.makeText(context, "Subscribed", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                Toast.makeText(context, "Subscribe failed", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        client.setCallback(new MqttCallback() {
+            @Override
+            public void connectionLost(Throwable cause) {
+                Toast.makeText(context, "Connection lost", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage message) throws Exception {
+                response = new String(message.getPayload());
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken token) {
+
+            }
+        });
 
     }
 
