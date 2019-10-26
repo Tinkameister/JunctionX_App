@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.text.PrecomputedText;
 import android.view.View;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,7 @@ import org.eclipse.paho.client.mqttv3.internal.wire.MqttSubscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
+import android.os.AsyncTask;
 
 public class MqttNetwork {
     MqttAndroidClient client;
@@ -34,6 +37,7 @@ public class MqttNetwork {
     Context myContext;
 
     String response;
+    boolean newResponse = false;
 
     public MqttNetwork(final Context context, String clientId) {
         myContext = context;
@@ -87,6 +91,7 @@ public class MqttNetwork {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 response = new String(message.getPayload());
+                newResponse = true;
             }
 
             @Override
@@ -117,8 +122,39 @@ public class MqttNetwork {
         }
     }
 
-    public int MqttFindRoom(int seats, boolean projector, boolean secret, boolean video, boolean whiteboard, boolean whiteboard, boolean smartboard, char sector){
+    private class AsyncResponseWaiter extends AsyncTask <Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
+            while (!newResponse) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            newResponse = false;
+            return response;
+        }
+    }
 
+    public int MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, char sector, int startTime, int endTime){
+
+        String payload = "{\"RequestType\":0," +
+                "\"Params\":{" +
+                "\"Seats\":"+ seats + "," +
+                "\"Projector\":" + projector + "," +
+                "\"Secret\":" + secret + "," +
+                "\"Video\":" + video + "," +
+                "\"Whiteboard\":" + whiteboard + "," +
+                "\"Smartboard\":" + smartboard + "," +
+                "\"Sector\":\"" + sector + "\"}," +
+                "\"Times\":{" +
+                "\"Start\":" + startTime + "," +
+                "\"End\":" + endTime + "}}";
+
+
+
+        String result = new AsyncResponseWaiter().doInBackground();
     }
 }
 
