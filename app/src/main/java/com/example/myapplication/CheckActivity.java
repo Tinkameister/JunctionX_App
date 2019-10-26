@@ -19,7 +19,7 @@ public class CheckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_check);
 
         timetable = findViewById(R.id.timetable);
-        timetable.setHeaderHighlight(2);
+        //timetable.setHeaderHighlight(2);
 
         ArrayList<Schedule> schedules = new ArrayList<Schedule>();
         Schedule schedule = new Schedule();
@@ -29,7 +29,6 @@ public class CheckActivity extends AppCompatActivity {
         schedule.setStartTime(new Time(10,0)); // sets the beginning of class time (hour,minute)
         schedule.setEndTime(new Time(13,30)); // sets the end of class time (hour,minute)
         schedules.add(schedule);
-//.. add one or more schedules
         timetable.add(schedules);
     }
 
