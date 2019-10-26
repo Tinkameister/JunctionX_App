@@ -73,12 +73,34 @@ public class ReservActivity extends AppCompatActivity {
 
         name = nameVar.getText().toString();
         seats = Integer.parseInt(seats_txt.getText().toString());
-        if(projector_switch.isChecked()){
+        if(projector_switch.isChecked())
             projector = 1;
-        }
-        else {
+        else
             projector = 0;
+
+        if(secret_switch.isChecked())
+            secret = 1;
+        else
+            secret = 0;
+
+        if(video_switch.isChecked())
+            video = 1;
+        else
+            video = 1;
+
+        if(whiteboard_switch.isChecked())
+            whiteboard = 1;
+        else
+            whiteboard = 0;
+
+        if(smartboard_switch.isChecked()){
+            smartboard = 1;
         }
+        else
+            smartboard = 0;
+
+
+
 
 
 
