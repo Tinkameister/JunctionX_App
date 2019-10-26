@@ -23,26 +23,24 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public class MqttNetwork {
-    String clientId;
     MqttAndroidClient client;
+    IMqttToken connectToken;
+    IMqttToken subscribeToken;
 
-    public void RequestType0(String requestType){
-        String payload =
-                    "{" +
-                        "\"RequestType\":"+ requestType + "," +
-                        "\"Params\":{" +
-                        "\"Seats\":10," +
-                        "\"Projector\":0," +
-                        "\"Secret\":1," +
-                        "\"Video\":0," +
-                        "\"Whiteboard\":0," +
-                        "\"Smartboard\":0," +
-                        "\"Sector\":\"A\"}," +
-                        "\"Times\":{" +
-                        "\"Start\":123456789," +
-                        "\"End\":123456789}}";
+
+    public MqttNetwork(MqttAndroidClient client){
+        this.client = new MqttAndroidClient(this, );
+        try {
+            this.connectToken = client.connect();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        this.subscribeToken = null;
 
 
     }
+
+
+
 
 }
