@@ -148,7 +148,7 @@ public class MqttNetwork {
         }
     }
 
-    public String MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, String sector, int startTime, int endTime){
+    public String MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, String sector, long startTime, long endTime){
 
         String payload = "{\"RequestType\":0," +
                 "\"Params\":{" +
@@ -168,7 +168,7 @@ public class MqttNetwork {
         return new AsyncResponseWaiter().doInBackground();
     }
 
-    public String MqttQueryReserveTimes(int roomID, int startTime, int endTime){
+    public String MqttQueryReserveTimes(int roomID, long startTime, long endTime){
 
         String payload = "{\"RequestType\":1," +
                 "\"RoomID\":" + roomID + "," +
@@ -181,7 +181,7 @@ public class MqttNetwork {
         return new AsyncResponseWaiter().doInBackground();
     }
 
-    public String MqttReserveRoom(int roomID, int startTime, int endTime){
+    public String MqttReserveRoom(int roomID, long startTime, long endTime){
 
         String payload = "{\"RequestType\":2," +
                 "\"RoomID\":" + roomID + "," +
