@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -27,6 +29,7 @@ public class ReservActivity extends AppCompatActivity {
     Button submit;
     String clientId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,46 @@ public class ReservActivity extends AppCompatActivity {
                 client = new MqttNetwork(ReservActivity.this, clientId);
             }
         });
+    }
+
+    public void dataFill() {
+        String name;
+        int seats;
+        int projector;
+        int secret;
+        int video;
+        int whiteboard;
+        int smartboard;
+        char sector;
+
+        EditText nameVar;
+        EditText seats_txt;
+        EditText sector_txt;
+        Switch projector_switch;
+        Switch secret_switch;
+        Switch video_switch;
+        Switch whiteboard_switch;
+        Switch smartboard_switch;
+
+        nameVar = findViewById(R.id.nameVariable);
+        seats_txt = findViewById(R.id.seats);
+        projector_switch = findViewById(R.id.Projector);
+        secret_switch = findViewById(R.id.secret);
+        video_switch = findViewById(R.id.videoCall);
+        whiteboard_switch = findViewById(R.id.whiteboard);
+        smartboard_switch = findViewById(R.id.smartBoard);
+
+        name = nameVar.getText().toString();
+        seats = Integer.parseInt(seats_txt.getText().toString());
+        if(projector_switch.isChecked()){
+            projector = 1;
+        }
+        else {
+            projector = 0;
+        }
+
+
+
     }
 
 }
