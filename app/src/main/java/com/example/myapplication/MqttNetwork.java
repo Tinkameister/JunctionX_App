@@ -97,18 +97,18 @@ public class MqttNetwork {
 
     }
 
-    public void MqttDisconnect(context){
+    public void MqttDisconnect(){
         try {
             disconnectToken = client.disconnect();
             disconnectToken.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(myContext, "Disconnected", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Toast.makeText(context, "Disconnect failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(myContext, "Disconnect failed", Toast.LENGTH_SHORT).show();
                 }
             });
         }

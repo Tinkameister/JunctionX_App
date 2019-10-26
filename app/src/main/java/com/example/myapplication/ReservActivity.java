@@ -32,6 +32,13 @@ public class ReservActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reserv);
 
         clientId = "kaki"; //MqttClient.generateClientId()
+        public void onClick (View view){
+            if (view.getId() == R.id.submitButton) {
+                client = new MqttNetwork(ReservActivity.this, clientId);
+            }
+        }
+    }
+}
 
 
         /*void publish () {
@@ -78,42 +85,6 @@ public class ReservActivity extends AppCompatActivity {
                     Toast.makeText(ReservActivity.this, "Not subscribed", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-
-        void callBack () {
-            client.setCallback(new MqttCallback() {
-                @Override
-                public void connectionLost(Throwable cause) {
-
-                }
-
-                @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    String received = new String(message.getPayload());
-                    String stringNumber = received.replace("[", "");
-                    stringNumber = stringNumber.replace("]", "");
-
-                    String[] parts = stringNumber.split(",");
-                    int[] roomArray = new int[parts.length];
-                    for (int i = 0; i < parts.length; i++) {
-                        roomArray[i] = Integer.parseInt(parts[i]);
-                    }
-
-                    Toast.makeText(ReservActivity.this, stringNumber, Toast.LENGTH_SHORT).show();
-
-                }
-
-                @Override
-                public void deliveryComplete(IMqttDeliveryToken token) {
-
-                }
-            });
-        }*/
-    }
-
-    public void onClick(View view) {
-        if(view.getId() == R.id.submitButton){
-            client = new MqttNetwork(ReservActivity.this, clientId);
         }
     }
 }
