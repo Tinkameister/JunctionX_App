@@ -148,7 +148,7 @@ public class MqttNetwork {
         }
     }
 
-    public String MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, char sector, int startTime, int endTime){
+    public String MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, String sector, int startTime, int endTime){
 
         String payload = "{\"RequestType\":0," +
                 "\"Params\":{" +
