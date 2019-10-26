@@ -21,6 +21,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.internal.wire.MqttPublish;
 import org.eclipse.paho.client.mqttv3.internal.wire.MqttSubscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -102,7 +103,17 @@ public class MqttNetwork {
 
     }
 
-    public void MqttDisconnect(){
+    private void Publish(String payload) {
+        MqttMessage message = new MqttMessage();
+        message.setPayload(payload.getBytes());
+        try {
+            client.publish("users/" + clientID + "/response", message);
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Disconnect(){
         try {
             disconnectToken = client.disconnect();
             disconnectToken.setActionCallback(new IMqttActionListener() {
