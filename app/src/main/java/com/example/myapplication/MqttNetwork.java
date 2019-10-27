@@ -141,7 +141,7 @@ public class MqttNetwork {
         }
     }
 
-    public String MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, String sector, long startTime, long endTime){
+    public void MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, String sector, long startTime, long endTime){
 
         String payload = "{\"RequestType\":0," +
                 "\"Params\":{" +
@@ -161,7 +161,7 @@ public class MqttNetwork {
         ResponseType = CallbackResponseTypes.FindRoom;
     }
 
-    public String MqttQueryReserveTimes(int roomID, long startTime, long endTime){
+    public void MqttQueryReserveTimes(int roomID, long startTime, long endTime){
 
         String payload = "{\"RequestType\":1," +
                 "\"RoomID\":" + roomID + "," +
@@ -170,11 +170,9 @@ public class MqttNetwork {
                 "\"End\":" + endTime + "}}";
 
         Publish(payload);
-
-        return new AsyncResponseWaiter().doInBackground();
     }
 
-    public String MqttReserveRoom(int roomID, long startTime, long endTime){
+    public void MqttReserveRoom(int roomID, long startTime, long endTime){
 
         String payload = "{\"RequestType\":2," +
                 "\"RoomID\":" + roomID + "," +
@@ -183,19 +181,15 @@ public class MqttNetwork {
                 "\"End\":" + endTime + "}}";
 
         Publish(payload);
-
-        return new AsyncResponseWaiter().doInBackground();
     }
 
-    public String MqttAddParticipant(int reserveID, String participant){
+    public void MqttAddParticipant(int reserveID, String participant){
 
         String payload = "{\"RequestType\":3," +
                 "\"ReserveID\":" + reserveID + "," +
                 "\"Participant\":\"" + participant + "\"}";
 
         Publish(payload);
-
-        return new AsyncResponseWaiter().doInBackground();
     }
 }
 
