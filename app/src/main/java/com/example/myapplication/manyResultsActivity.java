@@ -64,8 +64,9 @@ public class manyResultsActivity extends AppCompatActivity {
         t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(manyResultsActivity.this, oneResultActivity.class);
-                startActivity(i);
+                Intent f = new Intent(manyResultsActivity.this, reserveConfirmation.class);
+                f.putExtra("message", chosen_item);
+                startActivity(f);
             }
         });
 

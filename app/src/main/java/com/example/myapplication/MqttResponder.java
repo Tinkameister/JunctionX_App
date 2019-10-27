@@ -11,11 +11,13 @@ public class MqttResponder extends AppCompatActivity {
         payload = payload.replace("]", "");
 
 
+
         String[] finalPayload = payload.split(",");
         int[] roomArray = new int[finalPayload.length];
         for(int i = 0; i < finalPayload.length; i++) {
             roomArray[i] = Integer.parseInt(finalPayload[i]);
         }
+
         Intent oneresultIntent = new Intent(context, oneResultActivity.class);
         Intent manyresultIntent = new Intent(context, manyResultsActivity.class);
         Intent noresultIntent = new Intent(context, noResult.class);
@@ -24,6 +26,7 @@ public class MqttResponder extends AppCompatActivity {
         //noResult
         if(roomArray.length == 0){
             context.startActivity(noresultIntent);
+
         }
 
         //oneResult

@@ -25,6 +25,7 @@ public class oneResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_result);
 
+
         rec = getIntent();
         received = rec.getIntArrayExtra("response");
 
