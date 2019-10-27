@@ -83,6 +83,7 @@ public class MqttNetwork {
                         @Override
                         public void messageArrived(String topic, MqttMessage message) throws Exception {
                             response = new String(message.getPayload());
+                            new AsyncResponseWaiter().execute();
                             newResponse = true;
                         }
 
@@ -133,9 +134,11 @@ public class MqttNetwork {
         }
     }
 
-    private class AsyncResponseWaiter extends AsyncTask <Void, Void, String> {
+    private class AsyncResponseWaiter extends AsyncTask <Void, Boolean, String> {
+
+
         @Override
-        protected String doInBackground(Void... voids) {
+        protected String doInBackground(Boolean... booleans) {
             while (!newResponse) {
                 try {
                     Thread.sleep(10);
@@ -143,8 +146,18 @@ public class MqttNetwork {
                     e.printStackTrace();
                 }
             }
-            newResponse = false;
             return response;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            newResponse = false;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
     }
 

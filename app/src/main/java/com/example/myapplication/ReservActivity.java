@@ -72,7 +72,7 @@ public class ReservActivity extends AppCompatActivity {
         nameVar = findViewById(R.id.nameVariable);
         nameVar.setText(clientId);
 
-        //client = new MqttNetwork(ReservActivity.this, LogInActivity.getUserId());
+        client = new MqttNetwork(ReservActivity.this, clientId);
 
 
         dateButton = findViewById(R.id.dateButton);
