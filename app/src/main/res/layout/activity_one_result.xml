@@ -35,33 +35,13 @@
             android:gravity="center"
             android:text="Room nr." />
 
-        <TextView
-            android:id="@+id/addPeopleText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/colorBlack"
-            android:textSize="20sp"
-            android:text="Please confirm your reservation and add participants! Separate the names with commas." />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:gravity="top"
-            android:background="@color/colorLightPink"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_marginTop="10dp"
-            android:hint="Add participants' names here" />
-
         <Button
             android:id="@+id/confirmButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
+            android:layout_marginBottom="40dp"
             android:background="@color/colorOriginalPink"
             android:textColor="@color/colorWhite"
             android:textSize="30sp"
