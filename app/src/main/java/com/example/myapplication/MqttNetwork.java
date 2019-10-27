@@ -89,6 +89,7 @@ public class MqttNetwork {
                             switch (ResponseType){
                                 case FindRoom:
                                     MqttResponder.FindRoomResponse(response);
+                                    Toast.makeText(myContext, response, Toast.LENGTH_SHORT).show();
                                 case ReserveRoom:
                                     MqttResponder.ReserveRoomResponse(response);
                                 case AddParticipant:
@@ -119,7 +120,7 @@ public class MqttNetwork {
         MqttMessage message = new MqttMessage();
         message.setPayload(payload.getBytes());
         try {
-            client.publish("users/" + clientID + "/response", message);
+            client.publish("users/" + clientID + "/request", message);
         } catch (MqttException e) {
             e.printStackTrace();
         }
