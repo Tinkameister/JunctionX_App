@@ -43,8 +43,6 @@ public class MqttNetwork {
     String clientID;
     Context myContext;
 
-    boolean newResponse = false;
-
     public MqttNetwork(Context context, String clientId) {
         myContext = context;
         //Connect to MQTT broker
@@ -91,6 +89,12 @@ public class MqttNetwork {
                             switch (ResponseType){
                                 case FindRoom:
                                     MqttResponder.FindRoomResponse(response);
+                                case ReserveRoom:
+                                    MqttResponder.ReserveRoomResponse(response);
+                                case AddParticipant:
+                                    MqttResponder.AddParticipantResponse(response);
+                                case QueryReserveTimes:
+                                    MqttResponder.QueryReserveTimesResponse(response);
                             }
                         }
 
@@ -170,6 +174,8 @@ public class MqttNetwork {
                 "\"End\":" + endTime + "}}";
 
         Publish(payload);
+
+        ResponseType = CallbackResponseTypes.QueryReserveTimes;
     }
 
     public void MqttReserveRoom(int roomID, long startTime, long endTime){
@@ -181,6 +187,8 @@ public class MqttNetwork {
                 "\"End\":" + endTime + "}}";
 
         Publish(payload);
+
+        ResponseType = CallbackResponseTypes.ReserveRoom;
     }
 
     public void MqttAddParticipant(int reserveID, String participant){
@@ -190,6 +198,8 @@ public class MqttNetwork {
                 "\"Participant\":\"" + participant + "\"}";
 
         Publish(payload);
+
+        ResponseType = CallbackResponseTypes.AddParticipant;
     }
 }
 
