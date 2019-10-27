@@ -24,7 +24,7 @@ public class CheckActivity extends AppCompatActivity {
     int start_min;
     int end_hour;
     int end_min;
-    ReservActivity reservation;
+    ReserveActivity reservation;
 
 
     @Override

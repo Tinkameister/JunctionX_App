@@ -14,14 +14,14 @@ public class LogInActivity extends AppCompatActivity {
     EditText logIn;
     Button loginButton;
     String Id;
-    ReservActivity reservation;
+    ReserveActivity reservation;
     String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        reservation = new ReservActivity();
+        reservation = new ReserveActivity();
 
         logIn = findViewById(R.id.loginText);
         loginButton = findViewById(R.id.loginButton);

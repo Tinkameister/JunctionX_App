@@ -20,7 +20,7 @@ public class manyResultsActivity extends AppCompatActivity {
         h.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(manyResultsActivity.this, ReservActivity.class);
+                Intent i = new Intent(manyResultsActivity.this, ReserveActivity.class);
                 startActivity(i);
             }
         });
