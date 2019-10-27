@@ -12,6 +12,7 @@ import android.widget.Switch;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -89,16 +90,30 @@ public class ReserveActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar beforeDate = Calendar.getInstance();
-                Calendar afterDate = Calendar.getInstance();
+                String date_txt = textDate.getText().toString();
 
-                beforeDate.set(Year, Month, Date, beforeHrs, beforeMin);
-                afterDate.set(Year, Month, Date, afterHrs, afterMin);
+                EditText seats_field;
+                seats_field = findViewById(R.id.seats);
+                String seats_txt = seats_field.getText().toString();
 
-                startTime = beforeDate.getTimeInMillis() / 1000;
-                finishTime = afterDate.getTimeInMillis() / 1000;
+                EditText sector_field;
+                sector_field = findViewById(R.id.sectionVariable);
+                String sector_txt = sector_field.getText().toString();
 
-                dataFill();
+                if(date_txt != "Not selected" && !seats_txt.isEmpty() && !sector_txt.isEmpty()){
+                    Calendar beforeDate = Calendar.getInstance();
+                    Calendar afterDate = Calendar.getInstance();
+
+                    beforeDate.set(Year, Month, Date, beforeHrs, beforeMin);
+                    afterDate.set(Year, Month, Date, afterHrs, afterMin);
+
+                    startTime = beforeDate.getTimeInMillis() / 1000;
+                    finishTime = afterDate.getTimeInMillis() / 1000;
+
+                    dataFill();
+                }else{
+                    Toast.makeText(ReserveActivity.this, "Please fill all boxes", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
