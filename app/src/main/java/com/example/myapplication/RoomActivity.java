@@ -1,15 +1,16 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class RoomActivity extends AppCompatActivity {
 
-    private Button d, e;
-    Intent ReserveActivityIntent, CheckActivityIntent;
+    private Button v, l;
+    Intent RoomReservIntent, HowCheckIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,25 +20,27 @@ public class RoomActivity extends AppCompatActivity {
         Intent incoming = getIntent();
         final String clientId = incoming.getStringExtra("userId");
 
-        ReserveActivityIntent = new Intent(RoomActivity.this, ReserveActivity.class);
-        CheckActivityIntent = new Intent(RoomActivity.this, CheckActivity.class);
 
-        d = findViewById(R.id.roomReservButton);
-        d.setOnClickListener(new View.OnClickListener() {
+        RoomReservIntent = new Intent(RoomActivity.this, ReserveActivity.class);
+        HowCheckIntent = new Intent(RoomActivity.this, HowCheck.class);
+
+        v = findViewById(R.id.roomReservButton);
+        v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ReserveActivityIntent.putExtra("userId", clientId);
-                startActivity(ReserveActivityIntent);
+                startActivity(RoomReservIntent);
             }
         });
 
-        e = findViewById(R.id.roomCheckButton);
-        e.setOnClickListener(new View.OnClickListener() {
+        l = findViewById(R.id.roomCheckButton);
+        l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(CheckActivityIntent);
+                startActivity(HowCheckIntent);
+
             }
         });
+
     }
 
 
