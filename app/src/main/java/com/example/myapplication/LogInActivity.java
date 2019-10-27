@@ -14,14 +14,20 @@ public class LogInActivity extends AppCompatActivity {
     EditText logIn;
     Button loginButton;
     String Id;
-    String userId;
+    ReservActivity reservation;
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        reservation = new ReservActivity();
 
         logIn = findViewById(R.id.loginText);
         loginButton = findViewById(R.id.loginButton);
+
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

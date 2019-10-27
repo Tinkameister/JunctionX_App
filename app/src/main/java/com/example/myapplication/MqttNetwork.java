@@ -34,6 +34,7 @@ enum CallbackResponseTypes{
 }
 
 public class MqttNetwork {
+    MqttResponder responder;
     CallbackResponseTypes ResponseType;
     MqttAndroidClient client;
     IMqttToken connectToken;
@@ -44,6 +45,7 @@ public class MqttNetwork {
     Context myContext;
 
     public MqttNetwork(Context context, String clientId) {
+        responder = new MqttResponder();
         myContext = context;
         //Connect to MQTT broker
         clientID = clientId;
@@ -88,13 +90,13 @@ public class MqttNetwork {
 
                             switch (ResponseType){
                                 case FindRoom:
-                                    MqttResponder.FindRoomResponse(response);
+                                    responder.FindRoomResponse(myContext, response);
                                 case ReserveRoom:
-                                    MqttResponder.ReserveRoomResponse(response);
+                                    responder.ReserveRoomResponse(response);
                                 case AddParticipant:
-                                    MqttResponder.AddParticipantResponse(response);
+                                    responder.AddParticipantResponse(response);
                                 case QueryReserveTimes:
-                                    MqttResponder.QueryReserveTimesResponse(response);
+                                    responder.QueryReserveTimesResponse(response);
                             }
                         }
 
