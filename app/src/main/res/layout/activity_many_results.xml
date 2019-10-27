@@ -33,20 +33,18 @@
             android:textColor="@color/colorBlack"
             android:text="Please select from the following rooms matching your requirements or modify the given parameters." />
 
-        <TextView
-            android:id="@+id/textView3"
+        <ListView
+            android:id= "@+id/list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
-            android:textColor="@color/colorOriginalPink"
-            android:textSize="30sp"
-            android:text="Room nr." />
+            android:layout_weight="4">
+        </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="1">
+            >
 
             <TextView
                 android:id="@+id/textView4"
@@ -57,8 +55,8 @@
                 android:textSize="20sp"
                 android:text="Your chosen room:" />
 
-            <EditText
-                android:id="@+id/editText2"
+            <TextView
+                android:id="@+id/chosenText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

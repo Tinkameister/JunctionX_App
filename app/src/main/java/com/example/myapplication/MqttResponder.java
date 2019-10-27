@@ -10,35 +10,32 @@ public class MqttResponder extends AppCompatActivity {
         payload = payload.replace("[", "");
         payload = payload.replace("]", "");
 
-        int size = 0;
+
         String[] finalPayload = payload.split(",");
-        Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-        int[] roomArray = new int[payload.length()];
-        for(int i = 0; i < payload.length(); i++) {
+        int[] roomArray = new int[finalPayload.length];
+        for(int i = 0; i < finalPayload.length; i++) {
             roomArray[i] = Integer.parseInt(finalPayload[i]);
-            size = i;
         }
         Intent oneresultIntent = new Intent(context, oneResultActivity.class);
         Intent manyresultIntent = new Intent(context, manyResultsActivity.class);
+        Intent noresultIntent = new Intent(context, noResult.class);
 
 
         //noResult
-        if(size == 0){
-            Toast.makeText(context, "itt bent", Toast.LENGTH_SHORT).show();
-            Intent noresultIntent = new Intent(context, noResult.class);
-            startActivity(noresultIntent);
+        if(roomArray.length == 0){
+            context.startActivity(noresultIntent);
         }
 
         //oneResult
-        if(size == 1){
+        if(roomArray.length == 1){
             oneresultIntent.putExtra("response", roomArray);
-            //startActivity(oneresultIntent);
+            context.startActivity(oneresultIntent);
         }
 
         //manyResult
-        if(size > 1) {
+        if(roomArray.length > 1) {
             manyresultIntent.putExtra("response", roomArray);
-            //startActivity(manyresultIntent);
+            context.startActivity(manyresultIntent);
         }
     }
 

@@ -103,12 +103,6 @@ public class ReserveActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        client.Disconnect();
-    }
-
     public void dataFill() {
         EditText seats_txt;
         EditText sector_txt;

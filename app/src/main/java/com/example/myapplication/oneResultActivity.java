@@ -5,14 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class oneResultActivity extends AppCompatActivity {
 
     Button p;
     TextView text;
-    String received;
+    int[] received;
+    String output;
     Intent rec;
 
     @Override
@@ -21,10 +26,15 @@ public class oneResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_one_result);
 
         rec = getIntent();
-        received = rec.getStringExtra("response");
+        received = rec.getIntArrayExtra("response");
+
+        output = Arrays.toString(received);
+
+        output = output.replace("[", "");
+        output = output.replace("]", "");
 
         text = findViewById(R.id.numberText);
-        text.setText(received);
+        text.setText(output);
 
         p = findViewById(R.id.confirmButton);
         p.setOnClickListener(new View.OnClickListener() {
