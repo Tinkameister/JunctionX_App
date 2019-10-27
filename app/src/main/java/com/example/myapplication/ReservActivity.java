@@ -168,8 +168,7 @@ public class ReservActivity extends AppCompatActivity {
         } else
             smartboard = 0;
 
-        String response;
-        response = client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
+        client.MqttFindRoom(seats, projector, secret, video, whiteboard, smartboard, sector, startTime, finishTime);
 
     }
 
