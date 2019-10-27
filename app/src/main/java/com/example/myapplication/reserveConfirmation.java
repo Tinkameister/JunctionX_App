@@ -26,7 +26,6 @@ public class reserveConfirmation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_result);
 
-        clientId = ReserveActivity.clientId;
         client = new MqttNetwork(this, clientId);
 
         got = getIntent();
