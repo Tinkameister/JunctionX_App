@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="40dp"
+    android:layout_marginLeft="20dp"
+    tools:context=".HowCheck">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:text="Please enter the room number below!" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/CheckRoomText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorLightPink"
+            android:gravity="center_vertical"
+            android:inputType="numberDecimal"
+            android:hint="Write number here" />
+
+        <Button
+            android:id="@+id/numberButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@color/colorOriginalPink"
+            android:textColor="@color/colorWhite"
+            android:text="Check" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:textColor="@color/colorBlack"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:text="OR" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="Check by QR code:" />
+
+    <Button
+        android:id="@+id/qrButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorOriginalPink"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
+        android:text="Scan" />
+
+</LinearLayout>

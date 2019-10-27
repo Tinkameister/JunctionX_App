@@ -2,8 +2,6 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.github.tlaabs.timetableview.Schedule;
 import com.github.tlaabs.timetableview.Time;
@@ -17,13 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CheckActivity extends AppCompatActivity {
     TimetableView timetable;
 
-    Button s, c;
+    //Button s, c;
     String payload;
     String id;
-    int start_hour;
-    int start_min;
-    int end_hour;
-    int end_min;
+    int start_hour=15;
+    int start_min=20;
+    int end_hour=16;
+    int end_min=40;
     ReserveActivity reservation;
 
 
@@ -35,30 +33,41 @@ public class CheckActivity extends AppCompatActivity {
         Intent k = getIntent();
         payload = k.getStringExtra("payload");
 
-        id = reservation.clientId;
-        start_hour = reservation.beforeHrs;
-        start_min = reservation.beforeMin;
-        end_hour = reservation.afterHrs;
-        end_min = reservation.beforeMin;
-
-
-
-
 
         timetable = findViewById(R.id.timetable);
         //timetable.setHeaderHighlight(2);
 
-        ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+        ArrayList<Schedule> schedules = new ArrayList<>();
         Schedule schedule = new Schedule();
-        schedule.setClassTitle("Meeting"); // sets subject
-        schedule.setClassPlace("Telekom BP"); // sets place
+        schedule.setClassTitle("Workshop"); // sets subject
+        schedule.setClassPlace("Telekom BP F.76"); // sets place
         schedule.setProfessorName(id); // sets professor
-        schedule.setStartTime(new Time(start_hour,start_min)); // sets the beginning of class time (hour,minute)
-        schedule.setEndTime(new Time(end_hour,end_min)); // sets the end of class time (hour,minute)
+        schedule.setStartTime(new Time(12,30)); // sets the beginning of class time (hour,minute)
+        schedule.setEndTime(new Time(17,20)); // sets the end of class time (hour,minute)
+        schedule.setDay(2);
         schedules.add(schedule);
         timetable.add(schedules);
 
-        s = findViewById(R.id.leftButton);
+        schedule.setClassTitle("Meeting"); // sets subject
+        schedule.setClassPlace("Telekom BP Room C.27"); // sets place
+        schedule.setProfessorName(id); // sets professor
+        schedule.setStartTime(new Time(9,30)); // sets the beginning of class time (hour,minute)
+        schedule.setEndTime(new Time(10,40)); // sets the end of class time (hour,minute)
+        schedule.setDay(3);
+        schedules.add(schedule);
+        timetable.add(schedules);
+
+        schedule.setClassTitle("Consultation"); // sets subject
+        schedule.setClassPlace("Telekom BP Room A.9"); // sets place
+        schedule.setProfessorName(id); // sets professor
+        schedule.setStartTime(new Time(16,0)); // sets the beginning of class time (hour,minute)
+        schedule.setEndTime(new Time(18,12)); // sets the end of class time (hour,minute)
+        schedule.setDay(0);
+        schedules.add(schedule);
+        timetable.add(schedules);
+
+
+        /*s = findViewById(R.id.leftButton);
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +81,7 @@ public class CheckActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //ez lesz az adott hét plusz 604800
             }
-        });
+        });*/
     }
 
 

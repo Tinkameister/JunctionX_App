@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ReserveActivity extends AppCompatActivity {
 
-    MqttNetwork client;
+    MqttNetwork client; //1.
     Button submit;
     String clientId;
     String fromTime_txt;
@@ -54,7 +54,9 @@ public class ReserveActivity extends AppCompatActivity {
 
         if(client == null){
             client = new MqttNetwork(ReserveActivity.this, clientId);
-        }
+        } //----------------------2.az if fv, 2 paraméter activity ahol vagyok.this, clientID
+
+        //gombnyomáskor: MqttQueryReserveTimes(roomID int, long starttime, long endtime)
 
 
         dateButton = findViewById(R.id.dateButton);
