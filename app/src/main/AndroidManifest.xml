@@ -16,7 +16,7 @@
         <activity android:name=".oneResultActivity" />
         <activity android:name=".CheckActivity" />
         <activity android:name=".RoomActivity" />
-        <activity android:name=".ReservActivity" />
+        <activity android:name=".ReserveActivity" />
         <activity
             android:name=".MapActivity"
             android:screenOrientation="landscape" />

@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
+    Intent MainActivityIntent;
 
     EditText logIn;
     Button loginButton;
@@ -26,17 +26,15 @@ public class LogInActivity extends AppCompatActivity {
         logIn = findViewById(R.id.loginText);
         loginButton = findViewById(R.id.loginButton);
 
-
-
+        MainActivityIntent = new Intent(LogInActivity.this, MainActivity.class);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Id = logIn.getText().toString();
 
-                Intent id = new Intent(LogInActivity.this, MainActivity.class);
-                id.putExtra("userId", Id);
-                startActivity(id);
+                MainActivityIntent.putExtra("userId", Id);
+                startActivity(MainActivityIntent);
             }
         });
     }

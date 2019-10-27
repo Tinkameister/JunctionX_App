@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 
@@ -13,21 +12,24 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Button b, c;
+    Intent MapActivityIntent, RoomActivityIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent k = getIntent();
-        final String clientId = k.getStringExtra("userId");
+        Intent LoginActivityIntent = getIntent();
+        final String clientId = LoginActivityIntent.getStringExtra("userId");
+
+        MapActivityIntent = new Intent(MainActivity.this, MapActivity.class);
+        RoomActivityIntent = new Intent(MainActivity.this, RoomActivity.class);
 
         b = findViewById(R.id.mapButton);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, MapActivity.class);
-                startActivity(i);
+                startActivity(MapActivityIntent);
             }
         });
 
@@ -35,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent j = new Intent(MainActivity.this, RoomActivity.class);
-                j.putExtra("userId", clientId);
-                startActivity(j);
+                RoomActivityIntent.putExtra("userId", clientId);
+                startActivity(RoomActivityIntent);
             }
         });
 
