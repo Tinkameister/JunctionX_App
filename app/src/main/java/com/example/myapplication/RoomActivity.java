@@ -19,7 +19,6 @@ public class RoomActivity extends AppCompatActivity {
 
         Intent incoming = getIntent();
         final String clientId = incoming.getStringExtra("userId");
-        Toast.makeText(this, clientId, Toast.LENGTH_SHORT).show();
 
         d = findViewById(R.id.roomReservButton);
         d.setOnClickListener(new View.OnClickListener() {

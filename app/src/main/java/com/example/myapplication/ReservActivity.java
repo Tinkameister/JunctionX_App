@@ -67,7 +67,6 @@ public class ReservActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         clientId = i.getStringExtra("userId");
-        Toast.makeText(this, clientId, Toast.LENGTH_SHORT).show();
 
         nameVar = findViewById(R.id.nameVariable);
         nameVar.setText(clientId);

@@ -89,7 +89,6 @@ public class MqttNetwork {
                             switch (ResponseType){
                                 case FindRoom:
                                     MqttResponder.FindRoomResponse(response);
-                                    Toast.makeText(myContext, response, Toast.LENGTH_SHORT).show();
                                 case ReserveRoom:
                                     MqttResponder.ReserveRoomResponse(response);
                                 case AddParticipant:

@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent k = getIntent();
         final String clientId = k.getStringExtra("userId");
-        Toast.makeText(this, clientId, Toast.LENGTH_SHORT).show();
 
         b = findViewById(R.id.mapButton);
         b.setOnClickListener(new View.OnClickListener() {
