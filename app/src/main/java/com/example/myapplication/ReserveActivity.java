@@ -52,7 +52,9 @@ public class ReserveActivity extends AppCompatActivity {
         nameVar = findViewById(R.id.nameVariable);
         nameVar.setText(clientId);
 
-        client = new MqttNetwork(ReserveActivity.this, clientId);
+        if(client == null){
+            client = new MqttNetwork(ReserveActivity.this, clientId);
+        }
 
 
         dateButton = findViewById(R.id.dateButton);
@@ -99,6 +101,12 @@ public class ReserveActivity extends AppCompatActivity {
                 dataFill();
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        client.Disconnect();
     }
 
     public void dataFill() {
