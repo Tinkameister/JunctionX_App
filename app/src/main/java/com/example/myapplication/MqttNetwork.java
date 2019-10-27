@@ -1,33 +1,13 @@
 package com.example.myapplication;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.app.Application;
-import android.app.DownloadManager;
 import android.content.Context;
-import android.text.PrecomputedText;
-import android.view.View;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttPublish;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttSubscribe;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.io.UnsupportedEncodingException;
-import android.os.AsyncTask;
 
 enum CallbackResponseTypes{
     FindRoom, QueryReserveTimes, ReserveRoom, AddParticipant

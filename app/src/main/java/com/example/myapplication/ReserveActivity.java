@@ -1,49 +1,30 @@
 package com.example.myapplication;
 
-import android.app.Activity;
-import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
-
-import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.IMqttActionListener;
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.IMqttToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ReservActivity extends AppCompatActivity {
+public class ReserveActivity extends AppCompatActivity {
 
     MqttNetwork client;
     Button submit;
     String clientId;
-    String name;
     String fromTime_txt;
     String toTime_txt;
     String sector;
-    String seat_str;
     TextView nameVar;
     int seats;
     int projector;
@@ -71,7 +52,7 @@ public class ReservActivity extends AppCompatActivity {
         nameVar = findViewById(R.id.nameVariable);
         nameVar.setText(clientId);
 
-        client = new MqttNetwork(ReservActivity.this, clientId);
+        client = new MqttNetwork(ReserveActivity.this, clientId);
 
 
         dateButton = findViewById(R.id.dateButton);
