@@ -29,7 +29,12 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import android.os.AsyncTask;
 
+enum CallbackResponseTypes{
+    FindRoom, QueryReserveTimes, ReserveRoom, AddParticipant
+}
+
 public class MqttNetwork {
+    CallbackResponseTypes ResponseType;
     MqttAndroidClient client;
     IMqttToken connectToken;
     IMqttToken subscribeToken;
@@ -38,7 +43,6 @@ public class MqttNetwork {
     String clientID;
     Context myContext;
 
-    String response;
     boolean newResponse = false;
 
     public MqttNetwork(Context context, String clientId) {
@@ -82,8 +86,12 @@ public class MqttNetwork {
 
                         @Override
                         public void messageArrived(String topic, MqttMessage message) throws Exception {
-                            response = new String(message.getPayload());
-                            newResponse = true;
+                            String response = new String(message.getPayload());
+
+                            switch (ResponseType){
+                                case FindRoom:
+                                    MqttResponder.FindRoomResponse(response);
+                            }
                         }
 
                         @Override
@@ -133,21 +141,6 @@ public class MqttNetwork {
         }
     }
 
-    private class AsyncResponseWaiter extends AsyncTask <Void, Void, String> {
-        @Override
-        protected String doInBackground(Void... voids) {
-            while (!newResponse) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            newResponse = false;
-            return response;
-        }
-    }
-
     public String MqttFindRoom(int seats, int projector, int secret, int video, int whiteboard, int smartboard, String sector, long startTime, long endTime){
 
         String payload = "{\"RequestType\":0," +
@@ -165,7 +158,7 @@ public class MqttNetwork {
 
         Publish(payload);
 
-        return new AsyncResponseWaiter().doInBackground();
+        ResponseType = CallbackResponseTypes.FindRoom;
     }
 
     public String MqttQueryReserveTimes(int roomID, long startTime, long endTime){
