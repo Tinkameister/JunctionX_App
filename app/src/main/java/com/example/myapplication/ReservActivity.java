@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class ReservActivity extends AppCompatActivity {
     String toTime_txt;
     String sector;
     String seat_str;
+    TextView nameVar;
     int seats;
     int projector;
     int secret;
@@ -62,6 +64,16 @@ public class ReservActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserv);
+
+        Intent i = getIntent();
+        clientId = i.getStringExtra("userId");
+        Toast.makeText(this, clientId, Toast.LENGTH_SHORT).show();
+
+        nameVar = findViewById(R.id.nameVariable);
+        nameVar.setText(clientId);
+
+        //client = new MqttNetwork(ReservActivity.this, LogInActivity.getUserId());
+
 
         dateButton = findViewById(R.id.dateButton);
         fromTime = findViewById(R.id.fromTime);
@@ -90,7 +102,6 @@ public class ReservActivity extends AppCompatActivity {
                 handletoTime();
             }
         });
-
         submit = findViewById(R.id.submitButton);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,15 +116,12 @@ public class ReservActivity extends AppCompatActivity {
                 startTime = beforeDate.getTimeInMillis() / 1000;
                 finishTime = afterDate.getTimeInMillis() / 1000;
 
-                client = new MqttNetwork(ReservActivity.this, clientId);
-
                 dataFill();
             }
         });
     }
 
     public void dataFill() {
-        EditText nameVar;
         EditText seats_txt;
         EditText sector_txt;
         Switch projector_switch;
@@ -122,7 +130,6 @@ public class ReservActivity extends AppCompatActivity {
         Switch whiteboard_switch;
         Switch smartboard_switch;
 
-        nameVar = findViewById(R.id.nameVariable);
         seats_txt = findViewById(R.id.seats);
         projector_switch = findViewById(R.id.Projector);
         secret_switch = findViewById(R.id.secret);
@@ -131,7 +138,6 @@ public class ReservActivity extends AppCompatActivity {
         smartboard_switch = findViewById(R.id.smartBoard);
         sector_txt = findViewById(R.id.sectionVariable);
 
-        name = nameVar.getText().toString();
         seats = Integer.parseInt(seats_txt.getText().toString());
         fromTime_txt = fromText.getText().toString();
         toTime_txt = toText.getText().toString();

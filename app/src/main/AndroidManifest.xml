@@ -14,14 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".CheckActivity" />
         <activity android:name=".RoomActivity" />
         <activity android:name=".ReservActivity" />
         <activity
             android:name=".MapActivity"
             android:screenOrientation="landscape" />
-        <service android:name="org.eclipse.paho.android.service.MqttService" ></service>
-        <activity android:name=".MainActivity">
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+        <activity android:name=".LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

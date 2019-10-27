@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent k = getIntent();
+        final String clientId = k.getStringExtra("userId");
+        Toast.makeText(this, clientId, Toast.LENGTH_SHORT).show();
+
         b = findViewById(R.id.mapButton);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent j = new Intent(MainActivity.this, RoomActivity.class);
+                j.putExtra("userId", clientId);
                 startActivity(j);
             }
         });
