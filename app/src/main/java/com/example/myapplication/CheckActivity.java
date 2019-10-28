@@ -20,11 +20,6 @@ public class CheckActivity extends AppCompatActivity {
     //Button s, c;
     String payload;
     String id;
-    int start_hour=15;
-    int start_min=20;
-    int end_hour=16;
-    int end_min=40;
-    ReserveActivity reservation;
 
     private static int getRandomNumberInRange(int min, int max) {
 
@@ -40,10 +35,6 @@ public class CheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
-
-        Intent k = getIntent();
-        payload = k.getStringExtra("payload");
-
 
         timetable = findViewById(R.id.timetable);
         //timetable.setHeaderHighlight(2);

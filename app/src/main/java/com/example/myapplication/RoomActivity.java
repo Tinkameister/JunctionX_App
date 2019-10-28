@@ -28,6 +28,7 @@ public class RoomActivity extends AppCompatActivity {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RoomReservIntent.putExtra("message", clientId);
                 startActivity(RoomReservIntent);
             }
         });

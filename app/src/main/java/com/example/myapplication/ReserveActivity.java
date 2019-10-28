@@ -48,7 +48,7 @@ public class ReserveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reserv);
 
         Intent i = getIntent();
-        clientId = i.getStringExtra("userId");
+        clientId = i.getStringExtra("message");
 
         nameVar = findViewById(R.id.nameVariable);
         nameVar.setText(clientId);
