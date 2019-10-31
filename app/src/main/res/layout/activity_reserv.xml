@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
+    android:layout_margin="15dp"
     tools:context=".ReserveActivity"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:gravity="center_vertical">
 
@@ -40,40 +38,42 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="0dp"
         android:gravity="center_vertical"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/dateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:background="@color/colorLightPink"
             android:text="Date"
             android:textColor="@color/colorBlack" />
 
         <TextView
             android:id="@+id/textDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Not selected"
-            android:layout_marginLeft="50dp"
+            android:layout_width="210dp"
+            android:layout_height="41dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/colorBlack"
+            android:text="Not selected"
             android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="From"
             android:textColor="@color/colorBlack"
             android:background="@color/colorLightPink"
@@ -81,31 +81,30 @@
 
         <TextView
             android:id="@+id/fromText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="00:00"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/toTime"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="To"
-            android:textColor="@color/colorBlack"
+            android:layout_height="wrap_content"
             android:background="@color/colorLightPink"
-            android:id="@+id/toTime"/>
+            android:text="To"
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:id="@+id/toText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="00:00"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="20sp" />
 
@@ -113,33 +112,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/participants"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
+            android:layout_marginRight="20dp"
             android:textSize="20sp"
-            android:layout_weight="1"
-            android:text="Number of participants:" />
+            android:inputType="numberDecimal"
+            android:text="Number of participants" />
 
         <EditText
             android:id="@+id/seats"
-            android:layout_width="0dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_width="80dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
             android:background="@color/colorLightPink"
-            android:ems="10"
             android:inputType="numberDecimal" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:gravity="center_vertical">
@@ -149,57 +148,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
+            android:layout_marginRight="25dp"
             android:textSize="20sp"
-            android:layout_weight="1"
-            android:text="Your preferred section section:" />
+            android:text="Your preferred section:" />
 
         <EditText
             android:id="@+id/sectionVariable"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_marginRight="30dp"
+            android:layout_gravity="center_vertical|right"
             android:background="@color/colorLightPink"
-            android:ems="10"
             android:inputType="textPersonName" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:gravity="bottom">
+        android:layout_weight="1"
+        android:gravity="center_vertical">
 
         <Switch
             android:id="@+id/Projector"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginRight="10dp"
             android:textSize="20sp"
+            android:layout_weight="1"
             android:text="Projector" />
 
         <Switch
             android:id="@+id/videoCall"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="1"
-            android:text="Video call" />
+            android:text="Video Call" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="0dp"
         android:orientation="horizontal"
+        android:layout_weight="1"
         android:gravity="center_vertical">
 
         <Switch
             android:id="@+id/whiteboard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:textSize="20sp"
             android:layout_weight="1"
             android:text="White Board" />
@@ -215,16 +214,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_gravity="top"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <Switch
             android:id="@+id/secret"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight ="10dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:textSize="20sp"
             android:text="Secret"
             />
@@ -242,15 +243,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <Button
             android:id="@+id/qrButton"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_gravity="top"
             android:layout_weight="1"
             android:background="@color/colorOriginalPink"
             android:textColor="@color/colorWhite"
@@ -262,12 +263,10 @@
             android:id="@+id/submitButton"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_gravity="top"
             android:layout_weight="3"
             android:background="@color/colorOriginalPink"
             android:textColor="@color/colorWhite"
             android:textSize="25sp"
-            android:onClick="onClick"
             android:text="Submit" />
     </LinearLayout>
 

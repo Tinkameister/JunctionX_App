@@ -32,7 +32,6 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Id = logIn.getText().toString();
-
                 MainActivityIntent.putExtra("userId", Id);
                 startActivity(MainActivityIntent);
             }

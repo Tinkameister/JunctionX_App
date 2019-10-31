@@ -48,7 +48,7 @@ public class ReserveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reserv);
 
         Intent i = getIntent();
-        clientId = i.getStringExtra("userId");
+        clientId = i.getStringExtra("message");
 
         nameVar = findViewById(R.id.nameVariable);
         nameVar.setText(clientId);
@@ -58,7 +58,6 @@ public class ReserveActivity extends AppCompatActivity {
         } //----------------------2.az if fv, 2 paraméter activity ahol vagyok.this, clientID
 
         //gombnyomáskor: MqttQueryReserveTimes(roomID int, long starttime, long endtime)
-
 
         dateButton = findViewById(R.id.dateButton);
         fromTime = findViewById(R.id.fromTime);

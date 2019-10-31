@@ -12,36 +12,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class oneResultActivity extends AppCompatActivity {
+public class reserveConfirmation extends AppCompatActivity {
 
-    Button p;
-    TextView text;
-    int[] received;
-    String output;
-    Intent rec;
+    Button button1;
+    TextView textView;
+    String incoming;
+    Intent got;
+    MqttNetwork client;
+    String clientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_result);
 
+        client = new MqttNetwork(this, clientId);
 
-        rec = getIntent();
-        received = rec.getIntArrayExtra("response");
+        got = getIntent();
+        incoming = got.getStringExtra("message");
 
-        output = Arrays.toString(received);
+        textView = findViewById(R.id.numberText);
+        textView.setText(incoming);
 
-        output = output.replace("[", "");
-        output = output.replace("]", "");
-
-        text = findViewById(R.id.numberText);
-        text.setText(output);
-
-        p = findViewById(R.id.confirmButton);
-        p.setOnClickListener(new View.OnClickListener() {
+        button1 = findViewById(R.id.confirmButton);
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(oneResultActivity.this, MainActivity.class);
+                Intent i = new Intent(reserveConfirmation.this, MainActivity.class);
                 startActivity(i);
             }
         });

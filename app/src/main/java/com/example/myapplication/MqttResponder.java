@@ -40,7 +40,7 @@ public class MqttResponder extends AppCompatActivity {
     }
 
     public static void ReserveRoomResponse(String payload) {
-//ide kell írni a válaszra reakciókat, a KALENDÁR KIRÖLTŐT IS
+
     }
 
     public static void AddParticipantResponse(String payload) {
@@ -50,5 +50,3 @@ public class MqttResponder extends AppCompatActivity {
     public static void QueryReserveTimesResponse(String payload) {
     }
 }
-
-
